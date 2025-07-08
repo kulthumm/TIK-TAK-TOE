@@ -78,8 +78,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-
-
   document.querySelectorAll(".select-warrior").forEach(btn => {
     btn.addEventListener("click", () => {
       const card = btn.closest(".bg-white");
@@ -96,6 +94,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
       avatarSelect.classList.add("hidden");
       revealScreen.classList.remove("hidden");
+
+      // 🧊 Add particle effect ONLY when reveal screen is shown
+      if (!window.particlesInitialized) {
+        particlesJS("particles-js", {
+          particles: {
+            number: { value: 60 },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.6 },
+            size: { value: 3 },
+            move: { enable: true, speed: 1 }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: { onhover: { enable: false }, onclick: { enable: false } }
+          }
+        });
+        window.particlesInitialized = true;
+      }
+
       if (window.confetti) confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
     });
   });
@@ -128,12 +146,12 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("prepare-for-battle-screen").classList.remove("hidden");
     document.getElementById("info-p1-name").innerText = playerSelections[1].name;
     document.getElementById("info-p1-icon").innerText = playerSelections[1].charm.icon;
-    document.getElementById("info-p1-power").innerText = playerSelections[1].charm.power.split(":" )[0];
-    document.getElementById("info-p1-desc").innerText = playerSelections[1].charm.power.split(":" )[1];
+    document.getElementById("info-p1-power").innerText = playerSelections[1].charm.power.split(":")[0];
+    document.getElementById("info-p1-desc").innerText = playerSelections[1].charm.power.split(":")[1];
     document.getElementById("info-p2-name").innerText = playerSelections[2].name;
     document.getElementById("info-p2-icon").innerText = playerSelections[2].charm.icon;
-    document.getElementById("info-p2-power").innerText = playerSelections[2].charm.power.split(":" )[0];
-    document.getElementById("info-p2-desc").innerText = playerSelections[2].charm.power.split(":" )[1];
+    document.getElementById("info-p2-power").innerText = playerSelections[2].charm.power.split(":")[0];
+    document.getElementById("info-p2-desc").innerText = playerSelections[2].charm.power.split(":")[1];
   });
 
   const tiles = document.querySelectorAll(".tile");
@@ -161,37 +179,38 @@ window.addEventListener("DOMContentLoaded", () => {
       moveCount++;
 
       if (moveCount >= 5) {
-  const winPattern = checkWinner();
-  if (winPattern) {
-    gameActive = false;
+        const winPattern = checkWinner();
+        if (winPattern) {
+          gameActive = false;
 
-    const winner = playerSelections[currentTurn];
-    const isComputerWin = (gameMode === "pvc" && currentTurn === 2);
+          const winner = playerSelections[currentTurn];
+          const isComputerWin = (gameMode === "pvc" && currentTurn === 2);
 
-    let victoryMessage = "";
+          let victoryMessage = "";
 
-    if (isComputerWin) {
-      victoryMessage = "The Machine has won this battle!";
-    } else if (gameMode === "pvp") {
-      victoryMessage = currentTurn === 1
-        ? "Player 1’s warrior has won this battle!"
-        : "Player 2’s warrior has won this battle!";
-    } else {
-      victoryMessage = "Your warrior has won this battle!";
-    }
+          if (isComputerWin) {
+            victoryMessage = "The Machine has won this battle!";
+          } else if (gameMode === "pvp") {
+            victoryMessage = currentTurn === 1
+              ? "Player 1’s warrior has won this battle!"
+              : "Player 2’s warrior has won this battle!";
+          } else {
+            victoryMessage = "Your warrior has won this battle!";
+          }
 
-    document.querySelector("#victory-screen h1").innerText = victoryMessage;
-    document.getElementById("victory-avatar").src = winner.image;
-    document.getElementById("prepare-for-battle-screen").classList.add("hidden");
-    document.getElementById("victory-screen").classList.remove("hidden");
+          document.querySelector("#victory-screen h1").innerText = victoryMessage;
+          document.getElementById("victory-avatar").src = winner.image;
+          document.getElementById("prepare-for-battle-screen").classList.add("hidden");
+          document.getElementById("victory-screen").classList.remove("hidden");
 
-    if (window.confetti) {
-      confetti({ particleCount: 180, spread: 120, origin: { y: 0.6 } });
-    }
+          if (window.confetti) {
+            confetti({ particleCount: 180, spread: 120, origin: { y: 0.6 } });
+          }
 
-    return;
-  }
-}
+          return;
+        }
+      }
+
       if (moveCount === 9) {
         gameActive = false;
         document.getElementById("prepare-for-battle-screen").classList.add("hidden");
@@ -256,22 +275,4 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("tie-screen").classList.add("hidden");
     document.getElementById("prepare-for-battle-screen").classList.remove("hidden");
   });
-  // your entire main.js code above...
-
-// 👇 Paste this just before the final closing brace of window.addEventListener("DOMContentLoaded", ...)
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 60 },
-    color: { value: "#ffffff" },
-    shape: { type: "circle" },
-    opacity: { value: 0.6 },
-    size: { value: 3 },
-    move: { enable: true, speed: 1 }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: { onhover: { enable: false }, onclick: { enable: false } }
-  }
-});
-});
 });
