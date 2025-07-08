@@ -15,17 +15,10 @@
   animation: fade 8s ease-in-out infinite;
 }
 #particles-js canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   opacity: 1 !important;
-  z-index: 0 !important;
+  z-index: 10 !important;
   pointer-events: none;
-  mix-blend-mode: normal !important;
-  filter: none !important;
-  background: transparent !important;
+  filter: brightness(3) saturate(4) contrast(1.5); /* 🚀 Supercharged glow */
 }
 .tile:hover {
   background-color: #e0f7ff;
