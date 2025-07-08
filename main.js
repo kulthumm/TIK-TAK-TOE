@@ -94,25 +94,27 @@ window.addEventListener("DOMContentLoaded", () => {
 
       avatarSelect.classList.add("hidden");
       revealScreen.classList.remove("hidden");
-
-      // 🧊 Add particle effect ONLY when reveal screen is shown
-      if (!window.particlesInitialized) {
-        particlesJS("particles-js", {
-          particles: {
-            number: { value: 60 },
-            color: { value: "#ffffff" },
-            shape: { type: "circle" },
-            opacity: { value: 0.6 },
-            size: { value: 3 },
-            move: { enable: true, speed: 1 }
-          },
-          interactivity: {
-            detect_on: "canvas",
-            events: { onhover: { enable: false }, onclick: { enable: false } }
-          }
-        });
-        window.particlesInitialized = true;
-      }
+// 🧊  cyan-blue particles 
+if (!window.particlesInitialized) {
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 60 },
+      color: { value: "#00ffff" }, // Cyan-blue
+      shape: { type: "circle" },
+      opacity: { value: 0.6 },
+      size: { value: 3 },
+      move: { enable: true, speed: 1 }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: { onhover: { enable: false }, onclick: { enable: false } }
+    }
+  });
+  window.particlesInitialized = true;
+}
+    
+    
+      
 
       if (window.confetti) confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
     });
