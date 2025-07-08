@@ -16,9 +16,11 @@
 }
 #particles-js canvas {
   opacity: 1 !important;
-  z-index: 10 !important;
+  z-index: 0 !important;
   pointer-events: none;
-  filter: brightness(1.7) saturate(2); /* BOOST visibility 💥 */
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  background: transparent !important;
 }
 .tile:hover {
   background-color: #e0f7ff;
