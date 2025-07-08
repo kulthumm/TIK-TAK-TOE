@@ -99,7 +99,7 @@ if (!window.particlesInitialized) {
   particlesJS("particles-js", {
     particles: {
       number: { value: 60 },
-      color: { value: "#00ffff" }, // Cyan-blue
+      color: { value: "#00eaff" }, // Cyan-blue
       shape: { type: "circle" },
       opacity: { value: 0.6 },
       size: { value: 3 },
