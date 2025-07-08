@@ -350,5 +350,48 @@ class="w-40 h-40 object-contain rounded-full bg-blue-100 p-2" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="main.js"></script>
+    <script>
+  /* Initialize particles.js in warrior reveal screen */
+  particlesJS("particles-js", {
+    "particles": {
+      "number": { "value": 100 },
+      "color": { "value": "#ffffff" },
+      "shape": {
+        "type": "circle",
+        "stroke": { "width": 0, "color": "#000000" },
+        "polygon": { "nb_sides": 5 }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": true
+      },
+      "size": {
+        "value": 4,
+        "random": true
+      },
+      "line_linked": {
+        "enable": false
+      },
+      "move": {
+        "enable": true,
+        "speed": 2,
+        "direction": "none",
+        "random": true,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": { "enable": false },
+        "onclick": { "enable": false },
+        "resize": true
+      }
+    },
+    "retina_detect": true
+  });
+</script>
   </body>
 </html>
